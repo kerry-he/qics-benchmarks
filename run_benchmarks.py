@@ -24,8 +24,8 @@ if args.output is None:
     time_str = time.strftime("%Y-%m-%d_%H-%M-%S")
     fout_name = "qics_benchmarks_" + time_str + ".csv"
 
-gap_tol = 1e-5 if args.lowaccuracy else 1e-8
-gap_feas = 1e-5 if args.lowaccuracy else 1e-8
+tol_gap = 1e-5 if args.lowaccuracy else 1e-8
+tol_feas = 1e-5 if args.lowaccuracy else 1e-8
 
 with open(fout_name, "w", newline="") as file:
     writer = csv.writer(file)
@@ -34,9 +34,9 @@ with open(fout_name, "w", newline="") as file:
 
 for fname in fin_names:
     # Read and solve a conic program
-    model = qics.io.read_file(folder + fname)
+    model = qics.io.read_file(folder + "/" + fname)
     solver = qics.Solver(model, 
-                         max_iter=500, gap_tol=gap_tol, gap_feas=gap_feas)
+                         max_iter=500, tol_gap=tol_gap, tol_feas=tol_feas)
     info = solver.solve()
 
     # Write solver summary to file

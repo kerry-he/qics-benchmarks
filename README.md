@@ -24,7 +24,7 @@ against the library of quantum relative entropy programs.
 
 ```bash
 cd qics-benchmarks
-python run_benchmarks.py -d data/qreps/qics
+python run_benchmarks.py -d data/qrep/qics
 ```
 
 This outputs a CSV file named ``qics_benchmarks_*.csv`` into the working
